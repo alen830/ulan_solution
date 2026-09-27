@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  // 1. Tambahkan variabel untuk menerima data
+  final String nama;
+  final String email;
+  final String nomorTelepon;
+
+  // 2. Buat constructor dengan data default (opsional)
+  const ProfilePage({
+    super.key,
+    this.nama = 'Alen',
+    this.email = 'ale@gmail.com',
+    this.nomorTelepon = '+62 812-3456-7890',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +20,7 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('PROFIL'),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -30,57 +41,67 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Alen',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 4),
-            const Text(
-              'ale@gmail.com',
-              style: TextStyle(color: Colors.grey, fontSize: 14),
-            ),
-            const SizedBox(height: 32),
 
-            // Item Informasi Profil
+            // Teks Nama di bawah foto
+            Text(
+              nama, // <-- Menggunakan variabel nama
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              email, // <-- Menggunakan variabel email
+              style: const TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 24),
+
+            // Card Nama Lengkap
             _buildProfileItem(
               icon: Icons.person_outline,
-              title: 'Nama Lengkap',
-              value: 'Alen',
+              label: 'Nama Lengkap',
+              value: nama, // <-- Menggunakan variabel nama
             ),
+            const SizedBox(height: 12),
+            // Panggil fungsi ini di dalam Column/ListView tempat Anda menampilkan daftar profil:
+
+            _buildProfileItem(
+              icon: Icons.alternate_email, // AtauIcons.person_outline
+              label: 'Username',
+              value: '@alen_solution', // Ganti dengan variabel username Anda (contoh: user.username)
+            ),
+            const SizedBox(height: 12),
+
+            // Card Email
             _buildProfileItem(
               icon: Icons.email_outlined,
-              title: 'Email',
-              value: 'ale@gmail.com',
+              label: 'Email',
+              value: email, // <-- Menggunakan variabel email
             ),
+            const SizedBox(height: 12),
+
+            // Card Nomor Telepon
             _buildProfileItem(
               icon: Icons.phone_outlined,
-              title: 'Nomor Telepon',
-              value: '+62 812-3456-7890',
+              label: 'Nomor Telepon',
+              value: nomorTelepon, // <-- Menggunakan variabel nomorTelepon
             ),
+            const SizedBox(height: 30),
 
-            const SizedBox(height: 32),
-
-            // Tombol Edit Profile / Logout
+            // Tombol Keluar / Masuk
             SizedBox(
               width: double.infinity,
+              height: 48,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  // Tambahkan logika logout / kembali di sini
-                  Navigator.pop(context);
-                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 icon: const Icon(Icons.logout),
-                label: const Text(
-                  'Masuk',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                label: const Text('Kembali'),
               ),
             ),
           ],
@@ -89,35 +110,35 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  // Helper widget untuk membuat tampilan list item profil
   Widget _buildProfileItem({
     required IconData icon,
-    required String title,
+    required String label,
     required String value,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         children: [
-          Icon(icon, color: Colors.green),
+          Icon(icon, color: Colors.blue),
           const SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                label,
                 style: const TextStyle(fontSize: 12, color: Colors.grey),
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: 4),
               Text(
                 value,
                 style: const TextStyle(
                   fontSize: 15,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

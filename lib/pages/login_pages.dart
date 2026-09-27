@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Silakan masuk ke akun Absensi Pegawai Anda',
+                  'Silakan masuk ke akun Absensi PPKD Anda',
                   style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                 ),
                 const SizedBox(height: 36),

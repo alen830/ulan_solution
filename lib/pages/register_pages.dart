@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:alen_solution/pages/profile_pages.dart'; // <--- TAMBAHKAN BARIS INI
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -65,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 // Judul Halaman
                 const Text(
-                  'Absensi Pegawai',
+                  'Absensi  PPKD',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -135,6 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ? Icons.visibility
                             : Icons.visibility_off,
                       ),
+
                       onPressed: () {
                         setState(() {
                           _isPasswordVisible = !_isPasswordVisible;
